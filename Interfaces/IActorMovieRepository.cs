@@ -5,7 +5,7 @@ namespace MovieProject.Interfaces
 {
     public interface IActorMovieRepository
     {
-        Task<bool> AddNewActorToMovie(ActorMovie actormovie);
+        Task<bool> AddNewActorToMovie(ActorMovie actorMovie);
         Task<ActorMovie> CheckIfActorWithMovieExist(int movieId, int actorId);
 
 

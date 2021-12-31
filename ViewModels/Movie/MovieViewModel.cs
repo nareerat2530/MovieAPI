@@ -18,7 +18,7 @@ namespace MovieProject.ViewModels.Movie
         public DateTime EndDate { get; set; }
         public MovieCategory MovieCategory { get; set; }
         public List<int> ActorIds { get; set; }
-        public int ProducerId { get; set; }
-        public int CinemaId { get; set; }
+        public int? ProducerId { get; set; }
+        public int? CinemaId { get; set; }
     }
 }

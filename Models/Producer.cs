@@ -8,7 +8,9 @@ namespace MovieProject.Models
         public int Id { get; set; }
         [Required]
         public string FullName { get; set; }
+       
         public string ImageURL { get; set; }
+        [Required]
         public string Bio { get; set; }
         public ICollection<Movie> Movies { get; set; }
     }

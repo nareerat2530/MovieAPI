@@ -20,9 +20,9 @@ namespace MovieProject.Mapper
         public Producer Map(PostProducerViewModel model, Producer producer)
         {
 
-            producer.FullName = producer.FullName;
-            producer.ImageURL = producer.ImageURL;
-            producer.Bio = producer.Bio;
+            producer.FullName = model.FullName;
+            producer.ImageURL = model.ImageURL;
+            producer.Bio = model.Bio;
             return producer;
         }
 

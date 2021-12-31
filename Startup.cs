@@ -11,6 +11,7 @@ using MovieProject.Interfaces.IMapper;
 using MovieProject.Mapper;
 using MovieProject.Repository;
 
+
 namespace MovieProject
 {
     public class Startup
@@ -38,8 +39,10 @@ namespace MovieProject
             services.AddScoped<IProducerViewModelMapper, ProducerViewModelMapper>();
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddCors();
+
+           
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieProject", Version = "v1" });
@@ -57,15 +60,21 @@ namespace MovieProject
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(opt => opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseRouting();
+            
 
             app.UseAuthorization();
+           
+            
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+         
 
             // Seed database
             AppDbInitializer.Seed(app);

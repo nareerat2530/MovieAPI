@@ -51,7 +51,6 @@ C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\MovieProj
 C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\MovieProject.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\MovieProject.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\staticwebassets\MovieProject.StaticWebAssets.Manifest.cache
-C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\staticwebassets\MovieProject.StaticWebAssets.xml
 C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\scopedcss\bundle\MovieProject.styles.css
 C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\MovieProject.RazorTargetAssemblyInfo.cache
 C:\Users\naree\source\repos\MovieProject\MovieProject\obj\Debug\net5.0\MovieProject.csproj.CopyComplete

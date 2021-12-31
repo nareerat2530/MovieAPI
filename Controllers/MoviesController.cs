@@ -61,7 +61,7 @@ namespace MovieProject.Controllers
         }
 
 
-        [HttpPost("add-movie")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddMovie([FromBody] PostMovieViewModel movie)
         {
 
@@ -73,7 +73,7 @@ namespace MovieProject.Controllers
             }
             return StatusCode(500, "Something went wrong!");
         }
-        [HttpGet("get-movie-by-id/{id}")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> GetMovieById(int id)
         {
             var result = await _unitOfWork.MovieRepository.GetMoiveByIdAsync(id);
@@ -95,8 +95,8 @@ namespace MovieProject.Controllers
             return Ok(_movie);
         }
 
-        [HttpPut("update-moive-by-id/{id}")]
-        public async Task<IActionResult> UpdateActor(int id, [FromBody] UpdateMovieViewmodel movie)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateMovie(int id, [FromBody] UpdateMovieViewmodel movie)
         {
             var toUpdate = await _unitOfWork.MovieRepository.GetMoiveByIdAsync(id);
             if (toUpdate == null) return NotFound($"Cound not find any movie with id: {id}");
@@ -109,8 +109,8 @@ namespace MovieProject.Controllers
             return StatusCode(500, "Something went wrong");
         }
 
-        [HttpDelete("remove-movie/{id}")]
-        public async Task<IActionResult> DeleteActor(int id)
+        [HttpDelete("remove/{id}")]
+        public async Task<IActionResult> DeleteMovie(int id)
         {
             var toDelete = await _unitOfWork.MovieRepository.GetMoiveByIdAsync(id);
             if (toDelete == null) return NotFound($"Cound not find any car with id: {id}");

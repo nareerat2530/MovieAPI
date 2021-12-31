@@ -20,6 +20,8 @@ namespace MovieProject.ViewModels.Movie
         public MovieCategory MovieCategory { get; set; }
         public int? ProducerId { get; set; }
         public int? CinemaId { get; set; }
+        
+     
 
 
     }

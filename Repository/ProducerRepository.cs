@@ -3,7 +3,9 @@ using MovieProject.Data;
 using MovieProject.Interfaces;
 using MovieProject.Models;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
+
 
 namespace MovieProject.Repository
 {
@@ -15,8 +17,10 @@ namespace MovieProject.Repository
             _context = context;
         }
 
+       
         public async Task<bool> AddNewProducerAsync(Producer producer)
         {
+            
             try
             {
                 await _context.Producers.AddAsync(producer);

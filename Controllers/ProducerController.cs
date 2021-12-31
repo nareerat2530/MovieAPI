@@ -2,6 +2,7 @@
 using MovieProject.Interfaces;
 using MovieProject.Interfaces.IMapper;
 using MovieProject.ViewModels.Producer;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MovieProject.Controllers
@@ -30,12 +31,29 @@ namespace MovieProject.Controllers
             var _producer = _producerViewModelMapper.Map(producer);
             return Ok(_producer);
         }
+        bool IsAnyNullOrEmpty(object myObject)
+        {
+            foreach (PropertyInfo pi in myObject.GetType().GetProperties())
+            {
+                if (pi.PropertyType == typeof(string))
+                {
+                    string value = (string)pi.GetValue(myObject);
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
-        [HttpPost("add-producer")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddProducer([FromBody] PostProducerViewModel producer)
         {
+           
             var addProducer = _producerMapper.Map(producer);
-
+            if (IsAnyNullOrEmpty(producer)) return StatusCode(500);
+           
             if (await _unitOfWork.ProducerRerository.AddNewProducerAsync(addProducer))
             {
                 if (!await _unitOfWork.Complete()) return StatusCode(500, "Something went wrong!");
@@ -44,7 +62,7 @@ namespace MovieProject.Controllers
             }
             return StatusCode(500, "Something went wrong!");
         }
-        [HttpGet("get-producer-by-id/{id}")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _unitOfWork.ProducerRerository.GetProducerById(id);
@@ -52,7 +70,7 @@ namespace MovieProject.Controllers
             var _producer = _producerViewModelMapper.Map(result);
             return Ok(_producer);
         }
-        [HttpPut("update-producer-by-id/{id}")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateProducer(int id, [FromBody] PostProducerViewModel producer)
         {
             var toUpdate = await _unitOfWork.ProducerRerository.GetProducerById(id);
@@ -66,7 +84,7 @@ namespace MovieProject.Controllers
             }
             return StatusCode(500, "Something went wrong");
         }
-        [HttpDelete("remove-producer/{id}")]
+        [HttpDelete("remove/{id}")]
         public async Task<IActionResult> DeleteProducer(int id)
         {
             var toDelete = await _unitOfWork.ProducerRerository.GetProducerById(id);

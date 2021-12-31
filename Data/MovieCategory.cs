@@ -6,6 +6,12 @@
         Comedy,
         Drama,
         Documentary,
-        Horror
+        Horror,
+        Fantasy,
+        Mystery,
+        Romance,
+        Thriller
+       
+        
     }
 }

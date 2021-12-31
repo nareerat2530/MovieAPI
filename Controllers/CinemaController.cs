@@ -30,7 +30,7 @@ namespace MovieProject.Controllers
             var _cinema = _cinemaViewModelMapper.Map(cinema);
             return Ok(_cinema);
         }
-        [HttpPost("add-cinema")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddNewCinema([FromBody] PostCinemaViewModel cinema)
         {
             var addCinema = _cinemaMapper.Map(cinema);
@@ -43,7 +43,7 @@ namespace MovieProject.Controllers
             }
             return StatusCode(500, "Something went wrong!");
         }
-        [HttpGet("get-cinema-by-id/{id}")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _unitOfwork.CinemaRepository.GetCinemaByIdAsync(id);
@@ -51,7 +51,7 @@ namespace MovieProject.Controllers
             var _cinema = _cinemaViewModelMapper.Map(result);
             return Ok(_cinema);
         }
-        [HttpPut("update-cinema-by-id/{id}")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateCinema(int id, [FromBody] PostCinemaViewModel cinema)
         {
             var toUpdate = await _unitOfwork.CinemaRepository.GetCinemaByIdAsync(id);
@@ -66,7 +66,7 @@ namespace MovieProject.Controllers
             }
             return StatusCode(500, "Something went wrong");
         }
-        [HttpDelete("remove-cinema/{id}")]
+        [HttpDelete("remove/{id}")]
         public async Task<IActionResult> DeleteCinema(int id)
         {
             var toDelete = await _unitOfwork.CinemaRepository.GetCinemaByIdAsync(id);

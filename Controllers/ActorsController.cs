@@ -22,20 +22,18 @@ namespace MovieProject.Controllers
 
         }
 
-        [HttpPost("add-actor")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddActor([FromBody] PostViewModel actor)
         {
 
             var _actor = _actorMapper.Map(actor);
-            if (await _unitOfwork.ActorRepository.AddNewActorAsync(_actor))
-            {
-                if (!await _unitOfwork.Complete()) return StatusCode(500, "Something went wrong!");
+            if (!await _unitOfwork.ActorRepository.AddNewActorAsync(_actor))
+                return StatusCode(500, "Something went wrong!");
+            if (!await _unitOfwork.Complete()) return StatusCode(500, "Something went wrong!");
 
-                return StatusCode(201);
-            }
-            return StatusCode(500, "Something went wrong!");
+            return StatusCode(201);
         }
-        [HttpGet("get-actor-by-id/{id}")]
+        [HttpGet("get/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await _unitOfwork.ActorRepository.GetActorById(id);
@@ -57,7 +55,7 @@ namespace MovieProject.Controllers
         }
 
 
-        [HttpPut("update-actor-by-id/{id}")]
+        [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateActor(int id, [FromBody] PostViewModel actor)
         {
             var toUpdate = await _unitOfwork.ActorRepository.GetActorById(id);
@@ -72,14 +70,14 @@ namespace MovieProject.Controllers
             return StatusCode(500, "Something went wrong");
         }
 
-        [HttpDelete("remove-actor/{id}")]
+        [HttpDelete("remove/{id}")]
         public async Task<IActionResult> DeleteActor(int id)
         {
             var toDelete = await _unitOfwork.ActorRepository.GetActorById(id);
             if (toDelete == null) return NotFound($"Cound not find any actor with id: {id}");
 
-            if (_unitOfwork.ActorRepository.RemoveActor(toDelete))
-                if (await _unitOfwork.Complete()) return NoContent();
+            if (!_unitOfwork.ActorRepository.RemoveActor(toDelete)) return StatusCode(500, "Something went wrong");
+            if (await _unitOfwork.Complete()) return NoContent();
             return StatusCode(500, "Something went wrong");
         }
 

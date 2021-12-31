@@ -43,8 +43,8 @@ namespace MovieProject.Mapper
                 StartDate = model.StartDate,
                 ImageUrl = model.ImageUrl,
                 MovieCategory = model.MovieCategory,
-                CinemaId = model.CinemaId,
-                ProducerId = model.ProducerId
+                 CinemaId = model.CinemaId,
+                 ProducerId = model.ProducerId
             };
             return movie;
         }
@@ -57,8 +57,8 @@ namespace MovieProject.Mapper
             movie.StartDate = model.StartDate;
             movie.EndDate = model.EndDate;
             movie.ImageUrl = movie.ImageUrl;
-            movie.CinemaId = model.CinemaId;
-            movie.ProducerId = model.ProducerId;
+             movie.CinemaId = model.CinemaId;
+             movie.ProducerId = model.ProducerId;
             return movie;
 
 

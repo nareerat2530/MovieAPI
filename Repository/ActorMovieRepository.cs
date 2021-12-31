@@ -14,11 +14,11 @@ namespace MovieProject.Repository
         {
             _context = context;
         }
-        public async Task<bool> AddNewActorToMovie(ActorMovie actormovie)
+        public async Task<bool> AddNewActorToMovie(ActorMovie actorMovie)
         {
             try
             {
-                await _context.ActorMovies.AddAsync(actormovie);
+                await _context.ActorMovies.AddAsync(actorMovie);
                 return true;
             }
             catch
