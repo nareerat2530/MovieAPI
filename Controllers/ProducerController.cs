@@ -27,7 +27,7 @@ namespace MovieProject.Controllers
         public async Task<IActionResult> Get()
         {
             var producer = await _unitOfWork.ProducerRerository.GetAllProducerAsync();
-            if (producer == null) return NotFound("Could not find any actor in the system");
+            if (producer == null) return NotFound("Could not find any producer in the system");
             var _producer = _producerViewModelMapper.Map(producer);
             return Ok(_producer);
         }

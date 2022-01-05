@@ -48,10 +48,10 @@ namespace MovieProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var actor = await _unitOfwork.ActorRepository.GetAllActorAsync();
-            if (actor == null) return NotFound("Could not find any actor in the system");
-            var actors = _actorViewModelMapper.Map(actor);
-            return Ok(actors);
+            var actors = await _unitOfwork.ActorRepository.GetAllActorAsync();
+            if (actors == null) return NotFound("Could not find any actor in the system");
+            var _actors = _actorViewModelMapper.Map(actors);
+            return Ok(_actors);
         }
 
 

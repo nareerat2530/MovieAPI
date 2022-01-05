@@ -16,6 +16,7 @@ namespace MovieProject.Mapper
                 FullName = a.FullName,
                 ImageURL = a.ImageURL,
                 Bio = a.Bio,
+                ActorMovies = a.ActorMovies
 
             }).ToList();
 
